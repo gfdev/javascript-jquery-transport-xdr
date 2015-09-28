@@ -7,7 +7,7 @@
         factory(jQuery);
     }
 }(function ($) {
-    $.ajaxTransport('*', function(opts) {
+    $.ajaxTransport('+*', function(opts) {
         if (opts.crossDomain && !('withCredentials' in new XMLHttpRequest()) && 'XDomainRequest' in window) {
             var xdr = new XDomainRequest(),
                 protoDst = opts.url.substring(0, opts.url.indexOf(':')),
