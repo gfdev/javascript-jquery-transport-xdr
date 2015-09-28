@@ -8,7 +8,7 @@
     }
 }(function ($) {
     $.ajaxTransport('+*', function(opts) {
-        if (opts.crossDomain && !('withCredentials' in new XMLHttpRequest()) && window.XDomainRequest) {
+        if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
             var xdr = new XDomainRequest(),
                 protoDst = opts.url.substring(0, opts.url.indexOf(':')),
                 protoSrc = location.protocol;

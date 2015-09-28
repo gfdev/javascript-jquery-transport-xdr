@@ -1,18 +1,22 @@
 # jQuery plugin for CORS AJAX request with Internet Explorer 8/9
 
-Transparent jQuery fallback to XDomainRequest object to perform a cross-domain (CORS) AJAX requests with IE8 and IE9
+Transparent jQuery fallback to `XDomainRequest` object to perform a cross-domain (CORS) AJAX requests with IE8 and IE9
 
 ## Usage
 
-Just include in HTML page
+1. Include script in HTML page.
 
-```HTML
-<!--[if lte IE 9]><script src="http://path/to/jquery.transport.xdr.min.js"></script><![endif]-->
+``` html
+<!--[if (IE 8)|(IE 9)]><script src="//path/to/jquery.transport.xdr.min.js"></script><![endif]-->
+```
+or
+``` html
+<script src="//path/to/jquery.transport.xdr.min.js"></script>
 ```
 
-and use CORS requests as usual
+2. It's all! Use jQuery AJAX CORS requests as usual.
 
-```JavaScript
+``` js
 // POST request example
 $.ajax({
     type: 'POST',
