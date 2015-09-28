@@ -1,14 +1,14 @@
 (function (factory) {
-    if (typeof define === 'function' && 'amd' in define) {
+    if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
-    } else if (typeof module === 'object' && 'exports' in module) {
+    } else if (typeof module === 'object' && module.exports) {
         module.exports = factory(require('jquery'));
     } else {
         factory(jQuery);
     }
 }(function ($) {
     $.ajaxTransport('+*', function(opts) {
-        if (opts.crossDomain && !('withCredentials' in new XMLHttpRequest()) && 'XDomainRequest' in window) {
+        if (opts.crossDomain && !('withCredentials' in new XMLHttpRequest()) && window.XDomainRequest) {
             var xdr = new XDomainRequest(),
                 protoDst = opts.url.substring(0, opts.url.indexOf(':')),
                 protoSrc = location.protocol;
