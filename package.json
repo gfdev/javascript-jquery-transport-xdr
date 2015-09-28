@@ -33,7 +33,6 @@
   "license": "MIT",
   "devDependencies": {
     "jquery": "^2.1.4",
-    "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.12.2"
   },
   "dependencies": {}
