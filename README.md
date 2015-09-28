@@ -7,7 +7,7 @@ Transparent jQuery fallback to XDomainRequest object to perform a cross-domain (
 Just include in HTML page
 
 ```HTML
-<!--[if lte IE 9]><script src="https://github.com/gfdev/javascript-jquery-transport-xdr/blob/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
+<!--[if lte IE 9]><script src="https://raw.githubusercontent.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
 ```
 
 and use CORS requests as usual
