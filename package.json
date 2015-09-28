@@ -7,7 +7,9 @@
     "XDomainRequest",
     "XDR",
     "CORS",
+    "AJAX",
     "IE9",
+    "IE8",
     "jquery-plugin"
   ],
   "homepage": "https://github.com/gfdev/javascript-jquery-transport-xdr",
@@ -32,7 +34,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "jquery": "^2.1.4",
+    "jquery": ">=1.5",
     "webpack": "^1.12.2"
   },
   "dependencies": {}

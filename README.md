@@ -1,6 +1,6 @@
 # jQuery plugin for CORS AJAX request with Internet Explorer 8/9
 
-Transparent jQuery fallback to `XDomainRequest` object to perform a cross-domain (CORS) AJAX requests with IE8 and IE9
+Transparent `jQuery` fallback to `XDomainRequest` object to perform a cross-domain (`CORS`) `AJAX` requests with `IE8` and `IE9`
 
 ## Usage
 
