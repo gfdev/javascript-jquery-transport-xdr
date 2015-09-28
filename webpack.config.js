@@ -1,6 +1,5 @@
 var path = require('path')
     , webpack = require('webpack')
-    , TransferWebpackPlugin = require('transfer-webpack-plugin')
 ;
 
 module.exports = {
@@ -13,10 +12,7 @@ module.exports = {
         filename: '[name].min.js'
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
-        new TransferWebpackPlugin([
-            { from: 'src' }
-        ])
+        new webpack.optimize.UglifyJsPlugin()
     ],
     externals: {
         "jquery": "jQuery"

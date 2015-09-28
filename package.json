@@ -22,8 +22,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "rm -r dist/* && webpack -p",
-    "clean": "rm -r dist/*"
+    "build": "rm -rf dist/* && webpack -p && cp src/jquery.transport.xdr.js dist/",
+    "clean": "rm -rf dist/*"
   },
   "author": {
     "name": "Gordon Freeman",
