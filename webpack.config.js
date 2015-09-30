@@ -9,11 +9,14 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name].min.js'
+        filename: '[name].min.js',
+        libraryTarget: "umd"
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin()
-    ],
+    module: {
+        loaders: [
+            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
+        ]
+    },
     externals: {
         "jquery": "jQuery"
     }

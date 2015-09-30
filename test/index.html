@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <!--[if (IE 8)|(IE 9)]><script src="../dist/jquery.transport.xdr.min.js"></script><![endif]-->
+</head>
+<body>
+<div id="body"></div>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: 'POST',
+            url: 'https://baconipsum.com/api/?type=meat-and-filler&format=json',
+            //data: { test: 'test' },
+            //contentType: 'multipart/form-data; charset=UTF-8',
+            //forceMethod: true,
+            //forceContentType: true,
+            dataType: 'json'
+        }).done(function(data, status, xhr) {
+            console.warn('DONE:');
+            console.dir(arguments);
+
+            $('#body').html('<pre>' + JSON.stringify(data) + '</pre>');
+        }).fail(function(xhr, status, error) {
+            console.warn('FAIL:');
+            console.dir(error);
+        });
+    });
+</script>
+</body>
+</html>
