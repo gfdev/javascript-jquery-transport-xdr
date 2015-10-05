@@ -75,7 +75,7 @@ $.ajaxTransport('+*', (opts, optsUser) => {
                             break;
                     }
 
-                    if (error) return cb(500, 'Bad Data: ' + error);
+                    if (error) return cb(500, text.get(6, error));
 
                     var headers = [
                         'Content-Type: ' + xdr.contentType,
@@ -84,8 +84,8 @@ $.ajaxTransport('+*', (opts, optsUser) => {
 
                     cb(200, 'success', data, headers.join('\r\n'));
                 },
-                xdr.onerror = () => cb(500, 'Network Error');
-                xdr.ontimeout = () => cb(500, 'Timeout');
+                xdr.onerror = () => cb(500, text.get(7));
+                xdr.ontimeout = () => cb(500, text.get(8));
 
                 xdr.open(method, uri);
 

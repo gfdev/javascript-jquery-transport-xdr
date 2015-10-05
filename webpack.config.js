@@ -1,6 +1,10 @@
 var path = require('path')
     , webpack = require('webpack')
+    , pack = process.argv.indexOf('--no-minimize') === -1 ? true : false
+    , plugins = []
 ;
+
+pack && plugins.push(new webpack.optimize.UglifyJsPlugin());
 
 module.exports = {
     context: __dirname,
@@ -9,7 +13,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name].min.js',
+        filename: '[name]' + (pack ? '.min.' : '.') + 'js',
         libraryTarget: "umd"
     },
     module: {
@@ -17,6 +21,7 @@ module.exports = {
             { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
         ]
     },
+    plugins: plugins,
     externals: {
         "jquery": "jQuery"
     }
