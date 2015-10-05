@@ -1,0 +1,33 @@
+{
+  "name": "jquery-transport-xdr",
+  "title": "jQuery Transport XDomainRequest",
+  "description": "A jQuery plugin that enables cross-domain AJAX requests for IE8 and IE9 with XDomainRequest.",
+  "keywords": [
+    "XDomainRequest",
+    "cross-domain",
+    "XDR",
+    "CORS",
+    "AJAX",
+    "IE9",
+    "IE8",
+    "jquery-plugin"
+  ],
+  "version": "1.0.1",
+  "author": {
+    "name": "Gordon Freeman",
+    "url": "https://github.com/gfdev"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "bugs": "https://github.com/gfdev/javascript-jquery-transport-xdr/issues",
+  "homepage": "https://github.com/gfdev/javascript-jquery-transport-xdr",
+  "docs": "https://github.com/gfdev/javascript-jquery-transport-xdr#readme",
+  "download": "https://github.com/gfdev/javascript-jquery-transport-xdr/archive/1.0.1.zip",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
