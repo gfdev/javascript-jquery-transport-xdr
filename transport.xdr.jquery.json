@@ -12,7 +12,7 @@
     "IE8",
     "jquery-plugin"
   ],
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": {
     "name": "Gordon Freeman",
     "url": "https://github.com/gfdev"
@@ -26,7 +26,7 @@
   "bugs": "https://github.com/gfdev/javascript-jquery-transport-xdr/issues",
   "homepage": "https://github.com/gfdev/javascript-jquery-transport-xdr",
   "docs": "https://github.com/gfdev/javascript-jquery-transport-xdr#readme",
-  "download": "https://github.com/gfdev/javascript-jquery-transport-xdr/archive/1.0.3.zip",
+  "download": "https://github.com/gfdev/javascript-jquery-transport-xdr/archive/1.0.4.zip",
   "dependencies": {
     "jquery": ">=1.5"
   }
