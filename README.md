@@ -20,7 +20,7 @@ for these purposes IE 8/9 using `XDomainRequest`. `jquery-transport-xdr` makes t
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
 ```
-**Bower**:
+or **Bower**:
 ```
 $ bower install jquery-transport-xdr
 ```
@@ -28,7 +28,7 @@ $ bower install jquery-transport-xdr
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//host/path/bower_modules/dist/jquery.transport.xdr.min.js"></script><![endif]-->
 ```
-**NPM**:
+or **NPM**:
 ```
 $ npm install jquery-transport-xdr
 ```
