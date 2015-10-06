@@ -5,7 +5,6 @@ Internet Explorer 8 и 9 версии не поддерживают кросс-�
 что позволяет, не изменяя исходного кода, разрешить выполнение ajax запросов в IE8 и IE9.
 
 ## Ограничения
-
 `XDomainRequest` имеет ряд ограничений:
 * поддерживаются только протоколы `HTTP` и `HTTPS`
 * поддерживаются только методы `GET` и `POST`
@@ -17,7 +16,6 @@ Internet Explorer 8 и 9 версии не поддерживают кросс-�
 * нет возможности получить код неудачного ответа сервера
 
 ## Установка
-
 1. Добавить [плагин](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) в тело `HTML` страницы **после** загрузки jquery:
 ```html
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -41,9 +39,7 @@ $ npm install jquery-transport-xdr
 ```
 
 ## Использование
-
 После добавления [плагина](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js), ajax запросы используются как обычно:
-
 `POST:`
 ```javascript
 var xhr = $.ajax({
@@ -52,7 +48,6 @@ var xhr = $.ajax({
     dataType: 'json'
 });
 ```
-
 `GET:`
 ```javascript
 var xhr = $.ajax({
@@ -62,14 +57,12 @@ var xhr = $.ajax({
 });
 ```
 
+#### Опция `forceMethod`
 Т.к. `XDomainRequest` имеет ограничения, нет возможности отправить `PUT`, `DELETE`, `PATCH` или `HEAD` запросы, в случае их использования будет выданна ошибка
 `XXX Method Not Allowed`, но плагин позволяет использовать преобразование:
-
 * `HEAD` => `GET`
 * `PUT`|`DELETE`|`PATCH` => `POST`
-
 Для этого надо использовать параметр `forceMethod` в опциях запроса:
-
 `HEAD:`
 ```javascript
 var xhr = $.ajax({
@@ -79,15 +72,10 @@ var xhr = $.ajax({
     forceMethod: true
 });
 ```
-
 В этом случае метод `HEAD` будет заменен на `GET` и к параметрам запроса будет добавлен параметр `__method=HEAD`, т.е. к `URI` будет добавлен дополнительный параметр:
-
 `https://baconipsum.com/api/?type=meat-and-filler&format=json` => `https://baconipsum.com/api/?type=meat-and-filler&format=json&__method=HEAD`
-
 Парамерт `__method` можно получить на сервере и определить **оригинальный** метод.
-
 Тоже будет сделанно для методов `PUT`, `DELETE` и `PATCH`, за исключение того, что параметр `__method` будет добавлен в тело запроса и сам метод будет заменен на `POST`:
-
 `PUT:`
 ```javascript
 var xhr = $.ajax({
@@ -98,9 +86,7 @@ var xhr = $.ajax({
     forceMethod: true
 });
 ```
-
 `PUT` => `POST`
-
 ```
 POST /api/?type=meat-and-filler&format=json HTTP/1.1
 Host: baconipsum.com
@@ -111,3 +97,19 @@ Cache-Control: no-cache
 
 test=test&__method=PUT
 ```
+
+### Опция `forceContentType`
+Из-за ограничений `XDomainRequest` не отправляет заголовок `Content-Type`, передать его можно с помощью опции `forceContentType`:
+```javascript
+var xhr = $.ajax({
+    type: 'POST',
+    url: 'https://baconipsum.com/api/?type=meat-and-filler&format=json',
+    data: { test: 'test' },
+    dataType: 'json',
+    forceContentType: true
+});
+```
+Значение `Content-Type` будет переданно в параметре `__contentType`.
+
+## License
+**jquery-transport-xdr** is provided under the **MIT** license.
