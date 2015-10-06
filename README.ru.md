@@ -1,21 +1,22 @@
-# jQuery плагин для выполнения кросс-доменных `CORS` ajax-запросов в Internet Explorer 8 и 9
+# jQuery плагин для выполнения кросс-доменных **CORS** ajax-запросов в Internet Explorer 8 и 9
 
-Internet Explorer 8 и 9 версии не поддерживают кросс-доменные `CORS` ajax-запросы через стандартный объект `XMLHttpRequest`,
-для этих целей в IE 8/9 используется объект `XDomainRequest`. `jquery-transport-xdr` выполняет прозрачную замену транспорта в `jQuery`, что позволяет, не изменяя исходного кода, разрешить выполнение кросс-доменных ajax-запросов в IE8 и IE9.
+Internet Explorer 8 и 9 версии не поддерживают кросс-доменные **CORS** ajax-запросы через стандартный объект **XMLHttpRequest**,
+для этих целей в IE 8/9 используется объект **XDomainRequest**. **jquery-transport-xdr** выполняет прозрачную замену транспорта в jQuery, что позволяет, не изменяя исходного кода, разрешить выполнение кросс-доменных ajax-запросов в IE8 и IE9.
 
 ## Ограничения
-`XDomainRequest` имеет ряд ограничений:
-* поддерживаются только протоколы `HTTP` и `HTTPS`
-* поддерживаются только методы `GET` и `POST`
+**XDomainRequest** имеет ряд ограничений:
+* как и для обычного **CORS** запроса, сервер должен возвращать заголовок **Access-Control-Allow-Origin**
+* поддерживаются только протоколы **HTTP** и **HTTPS**
+* поддерживаются только методы **GET** и **POST**
 * в запрос нельзя добавить свои заголовки
-* в запросе отсутствует заголовок `Content-Type`
-* в запросе нельзя отправить `Cookie`
-* протокол `URI` с которого отправляется запрос (**https**://source), должен совпадать с протоколом `URI` сервера куда идет запрос (**https**://destination)
+* в запросе отсутствует заголовок **Content-Type**
+* в запросе нельзя отправить **Cookie**
+* сетевой протокол URI с которого отправляется запрос (**https**://source), должен совпадать с протоколом URI сервера куда идет запрос (**https**://destination)
 * нет возможности получить код успешного ответа сервера
 * нет возможности получить код неудачного ответа сервера
 
 ## Установка
-1. Добавить [jquery-transport-xdr](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) в тело `HTML` страницы **после** загрузки `jQuery`:
+1. Добавить [jquery-transport-xdr](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) в тело **HTML** страницы **после** загрузки **jQuery**:
 ```html
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
