@@ -21,7 +21,7 @@ Internet Explorer 8 и 9 версии не поддерживают кросс-�
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
 ```
-или с помощью **Bower**
+**Bower**:
 ```
 $ bower install jquery-transport-xdr
 ```
@@ -29,7 +29,7 @@ $ bower install jquery-transport-xdr
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//host/path/bower_modules/dist/jquery.transport.xdr.min.js"></script><![endif]-->
 ```
-или с помощью **NPM**
+**NPM**:
 ```
 $ npm install jquery-transport-xdr
 ```
@@ -40,6 +40,7 @@ $ npm install jquery-transport-xdr
 
 ## Использование
 После добавления [плагина](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js), ajax запросы используются как обычно:
+
 `POST:`
 ```javascript
 var xhr = $.ajax({
@@ -63,6 +64,7 @@ var xhr = $.ajax({
 * `HEAD` => `GET`
 * `PUT`|`DELETE`|`PATCH` => `POST`
 Для этого надо использовать параметр `forceMethod` в опциях запроса:
+
 `HEAD:`
 ```javascript
 var xhr = $.ajax({
@@ -110,6 +112,20 @@ var xhr = $.ajax({
 });
 ```
 Значение `Content-Type` будет переданно в параметре `__contentType`.
+
+Опции `forceContentType` и `forceMethod` можно использовать вместе:
+
+```javascript
+var xhr = $.ajax({
+    type: 'PATCH',
+    url: 'https://baconipsum.com/api/?type=meat-and-filler&format=json',
+    contentType: 'multipart/form-data; charset=UTF-8',
+    data: { test: 'test' },
+    dataType: 'json',
+    forceMethod: true,
+    forceContentType: true
+});
+```
 
 ## Лицензия
 **jquery-transport-xdr** распространяется под лицензией **MIT**.
