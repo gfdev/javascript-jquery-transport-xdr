@@ -111,5 +111,5 @@ var xhr = $.ajax({
 ```
 Значение `Content-Type` будет переданно в параметре `__contentType`.
 
-## License
-**jquery-transport-xdr** is provided under the **MIT** license.
+## Лицензия
+**jquery-transport-xdr** распространяется под лицензией **MIT**.
