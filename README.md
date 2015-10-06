@@ -1,22 +1,23 @@
-# jQuery plugin for cross-domain `CORS` ajax-requests in Internet Explorer 8 and 9
+# jQuery plugin for cross-domain CORS ajax-requests in Internet Explorer 8 and 9
 
-Internet Explorer 8 and 9 versions doesn't support cross-domain `CORS` ajax-requests with `XMLHttpRequest`,
-for these purposes IE 8/9 using `XDomainRequest`. `jquery-transport-xdr` makes transparent replasement `jQuery` transport, that's allow cross-domain ajax-requests in IE8 and IE9 without changing source code.
+Internet Explorer 8 and 9 versions doesn't support cross-domain **CORS** ajax-requests with **XMLHttpRequest**,
+for these purposes IE 8/9 using **XDomainRequest**. **jquery-transport-xdr** makes transparent replasement **jQuery** transport, that's allow cross-domain ajax-requests in IE8 and IE9 without changing source code.
 
 ## Limitations
 
-`XDomainRequest` have some limitations:
-* `HTTP` and `HTTPS` only allowed
-* `GET` and `POST` only allowed
+**XDomainRequest** have some limitations:
+* server must return **Access-Control-Allow-Origin** header as for usual **CORS** request
+* **HTTP** and **HTTPS** only allowed
+* **GET** and **POST** only allowed
 * custom headers can't be added to request
-* there is no `Content-Type` header in request
-* `Cookie` can't be sended
-* source scheme of `URI` (**https**://source) must be the same as destination scheme (**https**://destination)
+* there is no **Content-Type** header in request
+* **Cookie** can't be sended
+* source scheme of URI (**https**://source) must be the same as destination URI scheme (**https**://destination)
 * there is no ability to get success response code
 * there is no ability to get failure response code
 
 ## Installation
-1. Add [jquery-transport-xdr](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) to `HTML` body **after** `jQuery`:
+1. Add [jquery-transport-xdr](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) to **HTML** body **after** **jQuery**:
 
 ```html
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
