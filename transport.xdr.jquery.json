@@ -26,7 +26,7 @@
   "bugs": "https://github.com/gfdev/javascript-jquery-transport-xdr/issues",
   "homepage": "https://github.com/gfdev/javascript-jquery-transport-xdr",
   "docs": "https://github.com/gfdev/javascript-jquery-transport-xdr#readme",
-  "download": "https://github.com/gfdev/javascript-jquery-transport-xdr/archive/1.0.1.zip",
+  "download": "https://github.com/gfdev/javascript-jquery-transport-xdr/archive/1.0.3.zip",
   "dependencies": {
     "jquery": ">=1.5"
   }
