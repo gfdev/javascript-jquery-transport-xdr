@@ -44,7 +44,7 @@ $ npm install jquery-transport-xdr
 
 После добавления [плагина](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js), ajax запросы используются как обычно:
 
-`POST`
+`POST:`
 ```javascript
 var xhr = $.ajax({
     type: 'POST',
@@ -53,7 +53,7 @@ var xhr = $.ajax({
 });
 ```
 
-`GET`
+`GET:`
 ```javascript
 var xhr = $.ajax({
     type: 'GET',
@@ -70,7 +70,7 @@ var xhr = $.ajax({
 
 Для этого надо использовать параметр `forceMethod` в опциях запроса:
 
-`HEAD`
+`HEAD:`
 ```javascript
 var xhr = $.ajax({
     type: 'HEAD',
@@ -88,12 +88,12 @@ var xhr = $.ajax({
 
 Тоже будет сделанно для методов `PUT`, `DELETE` и `PATCH`, за исключение того, что параметр `__method` будет добавлен в тело запроса и сам метод будет заменен на `POST`:
 
-`PUT`
+`PUT:`
 ```javascript
 var xhr = $.ajax({
     type: 'PUT',
     url: 'https://baconipsum.com/api/?type=meat-and-filler&format=json',
-    data: { test: 'tetst' },
+    data: { test: 'test' },
     dataType: 'json',
     forceMethod: true
 });
@@ -102,7 +102,12 @@ var xhr = $.ajax({
 `PUT` => `POST`
 
 ```
-REQUEST BODY:
+POST /api/?type=meat-and-filler&format=json HTTP/1.1
+Host: baconipsum.com
+Connection: keep-alive
+Content-Length: 0
+Pragma: no-cache
+Cache-Control: no-cache
 
 test=test&__method=PUT
 ```
