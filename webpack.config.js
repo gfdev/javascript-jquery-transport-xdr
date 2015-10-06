@@ -1,10 +1,10 @@
 var path = require('path')
     , webpack = require('webpack')
-    , pack = process.argv.indexOf('--no-minimize') === -1 ? true : false
+    , minimize = process.argv.indexOf('--no-minimize') === -1 ? true : false
     , plugins = []
 ;
 
-pack && plugins.push(new webpack.optimize.UglifyJsPlugin());
+minimize && plugins.push(new webpack.optimize.UglifyJsPlugin());
 
 module.exports = {
     context: __dirname,
@@ -13,7 +13,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name]' + (pack ? '.min.' : '.') + 'js',
+        filename: '[name]' + (minimize ? '.min.' : '.') + 'js',
         libraryTarget: "umd"
     },
     module: {
