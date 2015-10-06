@@ -58,10 +58,11 @@ var xhr = $.ajax({
 ```
 
 #### Опция `forceMethod`
-Т.к. `XDomainRequest` имеет ограничения, нет возможности отправить `PUT`, `DELETE`, `PATCH` или `HEAD` запросы, в случае их использования будет выданна ошибка
-`XXX Method Not Allowed`, но `jquery-transport-xdr` позволяет использовать преобразование:
+Т.к. `XDomainRequest` имеет ограничения, нет возможности отправить `PUT`, `DELETE`, `PATCH` или `HEAD` запросы, в случае их использования будет выданна ошибка `XXX Method Not Allowed`, но `jquery-transport-xdr` позволяет использовать преобразование:
+
 * `HEAD` => `GET`
 * `PUT`|`DELETE`|`PATCH` => `POST`
+
 Для этого надо использовать параметр `forceMethod` в опциях запроса:
 
 `HEAD:`
@@ -74,9 +75,13 @@ var xhr = $.ajax({
 });
 ```
 В этом случае метод `HEAD` будет заменен на `GET` и к параметрам запроса будет добавлен параметр `__method=HEAD`, т.е. к `URI` будет добавлен дополнительный параметр:
+
 `https://baconipsum.com/api/?type=meat-and-filler&format=json` => `https://baconipsum.com/api/?type=meat-and-filler&format=json&__method=HEAD`
+
 Парамерт `__method` можно получить на сервере и определить **оригинальный** метод.
+
 Тоже будет сделанно для методов `PUT`, `DELETE` и `PATCH`, за исключение того, что параметр `__method` будет добавлен в тело запроса и сам метод будет заменен на `POST`:
+
 `PUT:`
 ```javascript
 var xhr = $.ajax({
