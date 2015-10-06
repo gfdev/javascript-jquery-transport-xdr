@@ -4,6 +4,7 @@ Internet Explorer 8 and 9 versions doesn't support cross-domain `CORS` ajax-requ
 for these purposes IE 8/9 using `XDomainRequest`. `jquery-transport-xdr` makes transparent replasement `jQuery` transport, that's allow cross-domain ajax-requests in IE8 and IE9 without changing source code.
 
 ## Limitations
+
 `XDomainRequest` have some limitations:
 * `HTTP` and `HTTPS` only allowed
 * `GET` and `POST` only allowed
@@ -16,6 +17,7 @@ for these purposes IE 8/9 using `XDomainRequest`. `jquery-transport-xdr` makes t
 
 ## Installation
 1. Add [jquery-transport-xdr](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) to `HTML` body **after** `jQuery`:
+
 ```html
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
@@ -48,6 +50,7 @@ var xhr = $.ajax({
     dataType: 'json'
 });
 ```
+
 `GET:`
 ```javascript
 var xhr = $.ajax({
@@ -75,9 +78,13 @@ var xhr = $.ajax({
 });
 ```
 `HEAD` will be replaced with `GET` in this case and `__method=HEAD` will be added to request params in `URI`:
+
 `https://baconipsum.com/api/?type=meat-and-filler&format=json` => `https://baconipsum.com/api/?type=meat-and-filler&format=json&__method=HEAD`
+
 Param `__method` you can get on server and deretmine **original** method.
+
 The same way for methods `PUT`, `DELETE` and `PATCH` except for param `__method` will be added to request body and original method will be replaced with `POST`:
+
 `PUT:`
 ```javascript
 var xhr = $.ajax({
@@ -101,7 +108,9 @@ test=test&__method=PUT
 ```
 
 ### Option `forceContentType`
+
 `XDomainRequest` limitations doesn't allow to send `Content-Type` header, but you can send it if will add `forceContentType` option:
+
 ```javascript
 var xhr = $.ajax({
     type: 'POST',
@@ -111,6 +120,7 @@ var xhr = $.ajax({
     forceContentType: true
 });
 ```
+
 `Content-Type` value will be sended in `__contentType` param.
 
 `forceContentType` and `forceMethod` options can be used together:
