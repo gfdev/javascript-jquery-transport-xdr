@@ -18,7 +18,7 @@ Internet Explorer 8 и 9 версии не поддерживают кросс-�
 
 ## Использование
 
-1. Добавить скрипт в тело `HTML` страницы **после** загрузки jquery:
+1. Добавить [скрипт](http://cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js) в тело `HTML` страницы **после** загрузки jquery:
 ```html
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--[if (IE 8)|(IE 9)]><script src="//cdn.rawgit.com/gfdev/javascript-jquery-transport-xdr/master/dist/jquery.transport.xdr.min.js"></script><![endif]-->
