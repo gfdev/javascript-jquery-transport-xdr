@@ -10,12 +10,13 @@ $.ajaxTransport('+*', (opts, optsUser) => {
         var text = require('./text'),
             xdr = new XDomainRequest(),
             method = opts.type.toUpperCase(),
+            contentType = opts.contentType || optsUser.contentType,
             scheme = opts.url.substring(0, opts.url.indexOf(':')).toUpperCase(),
             uri = opts.url,
             data = optsUser.data || {},
             _error = function (code, param) {
                 return {
-                    send: (hdr, cb) => cb(-1, text.get(code, param)),
+                    send: (hdr, cb) => { cb(-1, text.get(code, param)) },
                     abort: $.noop
                 }
             };
@@ -27,20 +28,30 @@ $.ajaxTransport('+*', (opts, optsUser) => {
 
         if (optsUser.forceMethod) {
             if (method === 'HEAD') {
-                uri += (opts.url.indexOf('?') === -1 ? '?' : '&') + '__method=' + method;
                 method = 'GET';
+                uri += (opts.url.indexOf('?') === -1 ? '?' : '&') + '__method=' + method;
             }
 
             if ($.inArray(method, ['PUT', 'DELETE', 'PATCH']) !== -1) {
-                data.__method = method;
                 method = 'POST';
+
+                if ($.isPlainObject(data))
+                    data.__method = method;
+                else if (typeof data === 'string')
+                    data += (data.length ? '&' : '') + '__method=' + method;
             }
         }
 
-        if (optsUser.forceContentType && optsUser.contentType) {
+        if (optsUser.forceContentType && contentType) {
             if (method === 'GET')
-                uri += (opts.url.indexOf('?') === -1 ? '?' : '&') + '__contentType=' + encodeURIComponent(optsUser.contentType);
-            if (method === 'POST') data.__contentType = optsUser.contentType;
+                uri += (opts.url.indexOf('?') === -1 ? '?' : '&') + '__contentType=' + encodeURIComponent(contentType);
+
+            if (method === 'POST') {
+                if ($.isPlainObject(data))
+                    data.__contentType = contentType;
+                else if (typeof data === 'string')
+                    data += (data.length ? '&' : '') + $.param({ __contentType: contentType });
+            }
         }
 
         if (opts.timeout) xdr.timeout = opts.timeout;
@@ -84,14 +95,22 @@ $.ajaxTransport('+*', (opts, optsUser) => {
 
                     cb(200, 'success', data, headers.join('\r\n'));
                 },
-                xdr.onerror = () => cb(500, text.get(7));
-                xdr.ontimeout = () => cb(500, text.get(8));
+                xdr.onerror = () => { cb(500, text.get(7)); }
+                xdr.ontimeout = () => { cb(500, text.get(8)); }
 
                 xdr.open(method, uri);
 
-                setTimeout(() => xdr.send(method === 'POST' && !$.isEmptyObject(data) ? $.param(data) : null), 0);
+                setTimeout(() => {
+                    xdr.send(method === 'POST'
+                        ? typeof data === 'string'
+                            ? data
+                            : $.isPlainObject(data)
+                                ? $.param(data)
+                                : null
+                        : null);
+                }, 0);
             },
-            abort: () => xdr.abort()
+            abort: () => { xdr.abort(); }
         };
     }
 });
