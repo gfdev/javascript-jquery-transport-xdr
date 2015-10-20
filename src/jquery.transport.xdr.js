@@ -5,6 +5,8 @@
  */
 'use strict';
 
+var $ = require('jquery');
+
 $.ajaxTransport('+*', (opts, optsUser) => {
     if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
         var text = require('./text'),

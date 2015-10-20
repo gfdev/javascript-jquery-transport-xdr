@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
+		module.exports = factory(require("jQuery"));
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
+		define(["jQuery"], factory);
 	else {
-		var a = factory();
+		var a = typeof exports === 'object' ? factory(require("jQuery")) : factory(root["jQuery"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function() {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,9 +61,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	'use strict';
 
+	var $ = __webpack_require__(1);
+
 	$.ajaxTransport('+*', function (opts, optsUser) {
 	    if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
-	        var text = __webpack_require__(1),
+	        var text = __webpack_require__(2),
 	            xdr = new XDomainRequest(),
 	            method = opts.type.toUpperCase(),
 	            contentType = opts.contentType || optsUser.contentType,
@@ -165,6 +167,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
 	'use strict';
