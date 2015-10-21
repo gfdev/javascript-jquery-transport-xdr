@@ -1,6 +1,6 @@
 {
   "name": "jquery-transport-xdr",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A jQuery plugin that enables cross-domain AJAX requests for IE8 and IE9 with XDomainRequest.",
   "main": "dist/jquery.transport.xdr.js",
   "keywords": [
