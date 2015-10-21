@@ -23,6 +23,7 @@ module.exports = {
     },
     plugins: plugins,
     externals: {
-        "jquery": "jquery"
+        "jquery": "jQuery",
+        "$": "jQuery"
     }
 };
