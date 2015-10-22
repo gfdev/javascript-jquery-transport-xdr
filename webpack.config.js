@@ -1,4 +1,5 @@
 var path = require('path')
+    , pkg = require('./package.json')
     , webpack = require('webpack')
     , minimize = process.argv.indexOf('--no-minimize') === -1 ? true : false
     , plugins = []
@@ -13,8 +14,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name]' + (minimize ? '.min.' : '.') + 'js',
-        libraryTarget: "umd"
+        filename: '[name]' + (minimize ? '.min.' : '.') + 'js'
     },
     module: {
         loaders: [
@@ -23,7 +23,6 @@ module.exports = {
     },
     plugins: plugins,
     externals: {
-        "jquery": "jQuery",
-        "$": "jQuery"
+        "jquery": "jQuery"
     }
 };
