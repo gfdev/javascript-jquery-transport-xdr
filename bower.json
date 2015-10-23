@@ -1,6 +1,6 @@
 {
   "name": "jquery-transport-xdr",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "homepage": "https://github.com/gfdev/javascript-jquery-transport-xdr",
   "authors": [
     "Gordon Freeman <eax@gmx.us>"
@@ -17,7 +17,21 @@
     "IE8",
     "jquery-plugin"
   ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
   "license": "MIT",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "~1"
+  }
 }
