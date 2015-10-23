@@ -60,8 +60,9 @@
 	        factory(jQuery);
 	    }
 	})(function ($) {
-	    $.ajaxTransport('+*', function (opts, optsUser) {
-	        if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
+	    $.ajaxTransport('+*', function (opts, optsUser, xhr) {
+	        console.dir(xhr);
+	        if (true) {
 	            var text = __webpack_require__(2),
 	                xdr = new XDomainRequest(),
 	                method = opts.type.toUpperCase(),
@@ -96,7 +97,7 @@
 	                }
 	            }
 
-	            if (optsUser.forceContentType && contentType) {
+	            if (optsUser.forceContentType) {
 	                if (method === 'GET') uri += (opts.url.indexOf('?') === -1 ? '?' : '&') + '__contentType=' + encodeURIComponent(contentType);
 
 	                if (method === 'POST') {
@@ -141,13 +142,20 @@
 
 	                        var headers = ['Content-Type: ' + xdr.contentType, 'Content-Length: ' + xdr.responseText.length];
 
-	                        cb(200, 'success', data, headers.join('\r\n'));
-	                    }, xdr.onerror = function () {
+	                        cb(200, 'OK', data, headers.join('\r\n'));
+	                    };
+
+	                    xdr.onerror = function () {
 	                        cb(500, text.get(7));
 	                    };
 	                    xdr.ontimeout = function () {
 	                        cb(500, text.get(8));
 	                    };
+
+	                    xhr.method = method;
+	                    xhr.url = uri;
+
+	                    console.dir(xhr);
 
 	                    xdr.open(method, uri);
 

@@ -14,8 +14,8 @@
         factory(jQuery);
     }
 }(function ($) {
-    $.ajaxTransport('+*', (opts, optsUser) => {
-        if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
+    $.ajaxTransport('+*', (opts, optsUser, xhr) => { console.dir(xhr);
+        if (1 || opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
             var text = require('./text'),
                 xdr = new XDomainRequest(),
                 method = opts.type.toUpperCase(),
@@ -25,7 +25,7 @@
                 data = optsUser.data || {},
                 _error = (code, param) => {
                     return {
-                        send: (hdr, cb) => { cb(-1, text.get(code, param)) },
+                        send: (hdr, cb) => { cb(-1, text.get(code, param)); },
                         abort: $.noop
                     }
                 };
@@ -51,7 +51,7 @@
                 }
             }
 
-            if (optsUser.forceContentType && contentType) {
+            if (optsUser.forceContentType) {
                 if (method === 'GET')
                     uri += (opts.url.indexOf('?') === -1 ? '?' : '&') + '__contentType=' + encodeURIComponent(contentType);
 
@@ -102,11 +102,16 @@
                             'Content-Length: ' + xdr.responseText.length
                         ];
 
-                        cb(200, 'success', data, headers.join('\r\n'));
-                    }
+                        cb(200, 'OK', data, headers.join('\r\n'));
+                    };
 
-                    xdr.onerror = () => { cb(500, text.get(7)); }
-                    xdr.ontimeout = () => { cb(500, text.get(8)); }
+                    xdr.onerror = () => { cb(500, text.get(7)); };
+                    xdr.ontimeout = () => { cb(500, text.get(8)); };
+
+                    xhr.method = method;
+                    xhr.url = uri;
+
+                    console.dir(xhr);
 
                     xdr.open(method, uri);
 
@@ -114,8 +119,8 @@
                         xdr.send(method === 'POST'
                             ? typeof data === 'string'
                                 ? data
-                                : $.isPlainObject(data)
-                                    ? $.param(data)
+                                    : $.isPlainObject(data)
+                            ? $.param(data)
                                 : null
                             : null);
                     }, 0);
