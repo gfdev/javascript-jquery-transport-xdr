@@ -1,10 +1,18 @@
+'use strict';
+
 var expect = chai.expect;
 
 describe('Array', function() {
-    describe('#indexOf()', function() {
-        it('should return -1 when the value is not present', function() {
-            [1,2,3].indexOf(5).should.equal(-1);
-            [1,2,3].indexOf(0).should.equal(-1);
+    var xhr = $.ajax({
+        type: 'GET',
+        url: 'http://baconipsum.com/api/?type=meat-and-filler&format=json',
+        data: {test: 'test'},
+        dataType: 'json'
+    });
+
+    it('1', function(done) {
+        xhr.done(function() {
+            done();
         });
     });
 });

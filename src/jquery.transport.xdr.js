@@ -103,8 +103,9 @@
                         ];
 
                         cb(200, 'success', data, headers.join('\r\n'));
-                    },
-                        xdr.onerror = () => { cb(500, text.get(7)); }
+                    }
+
+                    xdr.onerror = () => { cb(500, text.get(7)); }
                     xdr.ontimeout = () => { cb(500, text.get(8)); }
 
                     xdr.open(method, uri);
@@ -112,10 +113,10 @@
                     setTimeout(() => {
                         xdr.send(method === 'POST'
                             ? typeof data === 'string'
-                            ? data
-                            : $.isPlainObject(data)
-                            ? $.param(data)
-                            : null
+                                ? data
+                                : $.isPlainObject(data)
+                                    ? $.param(data)
+                                : null
                             : null);
                     }, 0);
                 },
