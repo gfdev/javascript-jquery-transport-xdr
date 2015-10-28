@@ -62,7 +62,7 @@ var xhr = $.ajax({
 ```
 
 #### Option **forceMethod**
-**XDomainRequest** have limitations, it doesn't allow **PUT**, **DELETE**, **PATCH** and **HEAD** requests, you will receive error **XXX Method Not Allowed** if try to use some of it, but `jquery-transport-xdr` can make replacement:
+**XDomainRequest** have limitations, it doesn't allow **PUT**, **DELETE**, **PATCH** and **HEAD** requests, you will receive error **XXX Method Not Allowed** if try to use some of them, but `jquery-transport-xdr` can make replacement:
 
 * **HEAD** => **GET**
 * **PUT**|**DELETE**|**PATCH** => **POST**
