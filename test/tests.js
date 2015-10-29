@@ -124,14 +124,65 @@ describe('GET', function() {
                 type: 'HEAD',
                 url: uri,
                 dataType: 'json',
-                forceMethod: true
+                forceMethod: true,
+                __test: true
             });
 
         rq.done(function(data, status, xhr) {
             expect(this.crossDomain).true;
             expect(this.hasContent).false;
-            expect(this.type).equal('GET');
-            expect(this.url).equal(uri);
+            expect(xhr.__method).equal('GET');
+            expect(xhr.__uri).equal(uri + '&__method=GET');
+
+            expect(xhr.status).equal(200);
+            expect(xhr.statusText).equal('OK');
+            expect(xhr.responseJSON).instanceof(Array);
+
+            done();
+        });
+    });
+
+    it('forceContentType', function(done) {
+        var uri = 'http://baconipsum.com/api/?type=meat-and-filler&format=json',
+            rq = $.ajax({
+                type: 'GET',
+                url: uri,
+                dataType: 'json',
+                //forceMethod: true,
+                forceContentType: true,
+                __test: true
+            });
+
+        rq.done(function(data, status, xhr) {
+            expect(this.crossDomain).true;
+            expect(this.hasContent).false;
+            expect(xhr.__method).equal('GET');
+            expect(xhr.__uri).equal(uri + '&__contentType=' + encodeURIComponent(this.contentType));
+
+            expect(xhr.status).equal(200);
+            expect(xhr.statusText).equal('OK');
+            expect(xhr.responseJSON).instanceof(Array);
+
+            done();
+        });
+    });
+
+    it('forceMethod + forceContentType', function(done) {
+        var uri = 'http://baconipsum.com/api/?type=meat-and-filler&format=json',
+            rq = $.ajax({
+                type: 'HEAD',
+                url: uri,
+                dataType: 'json',
+                forceMethod: true,
+                forceContentType: true,
+                __test: true
+            });
+
+        rq.done(function(data, status, xhr) {
+            expect(this.crossDomain).true;
+            expect(this.hasContent).false;
+            expect(xhr.__method).equal('GET');
+            expect(xhr.__uri).equal(uri + '&__method=GET&__contentType=' + encodeURIComponent(this.contentType));
 
             expect(xhr.status).equal(200);
             expect(xhr.statusText).equal('OK');

@@ -61,8 +61,7 @@
 	    }
 	})(function ($) {
 	    $.ajaxTransport('+*', function (opts, optsUser, xhr) {
-	        console.dir(xhr);
-	        if (true) {
+	        if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
 	            var text = __webpack_require__(2),
 	                xdr = new XDomainRequest(),
 	                method = opts.type.toUpperCase(),
@@ -80,7 +79,7 @@
 	            };
 
 	            if (!xdr) return _error(1);
-	            if (!opts.forceMethod && $.inArray(method, ['GET', 'POST']) === -1) return _error(2, method);
+	            if (!optsUser.forceMethod && $.inArray(method, ['GET', 'POST']) === -1) return _error(2, method);
 	            if ($.inArray(scheme, ['HTTP', 'HTTPS']) === -1) return _error(3, scheme);
 	            if (scheme !== location.protocol.substring(0, location.protocol.indexOf(':')).toUpperCase()) return _error(4);
 
@@ -152,10 +151,10 @@
 	                        cb(500, text.get(8));
 	                    };
 
-	                    xhr.method = method;
-	                    xhr.url = uri;
-
-	                    console.dir(xhr);
+	                    if (optsUser.__test === true) {
+	                        xhr.__method = method;
+	                        xhr.__uri = uri;
+	                    }
 
 	                    xdr.open(method, uri);
 
