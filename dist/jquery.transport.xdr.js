@@ -69,9 +69,9 @@
 	                scheme = opts.url.substring(0, opts.url.indexOf(':')).toUpperCase(),
 	                uri = opts.url,
 	                data = optsUser.data || {},
-	                _error = function _error(code, param) {
+	                _error = function (code, param) {
 	                return {
-	                    send: function send(hdr, cb) {
+	                    send: function (hdr, cb) {
 	                        cb(-1, text.get(code, param));
 	                    },
 	                    abort: $.noop
@@ -109,7 +109,7 @@
 	            xdr.onprogress = $.noop;
 
 	            return {
-	                send: function send(hdr, cb) {
+	                send: function (hdr, cb) {
 	                    xdr.onload = function () {
 	                        var data = {},
 	                            error = null;
@@ -162,7 +162,7 @@
 	                        xdr.send(method === 'POST' ? typeof data === 'string' ? data : $.isPlainObject(data) ? $.param(data) : null : null);
 	                    }, 0);
 	                },
-	                abort: function abort() {
+	                abort: function () {
 	                    xdr.abort();
 	                }
 	            };
@@ -183,7 +183,7 @@
 	'use strict';
 
 	module.exports = {
-	    get: function get(code, param) {
+	    get: function (code, param) {
 	        var _messages = {
 	            0: 'Unknown Error',
 	            1: 'No Transport',
