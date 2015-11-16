@@ -1,4 +1,4 @@
-# jQuery plugin for cross-domain CORS ajax-requests in Internet Explore r8 and 9
+# jQuery plugin for cross-domain CORS ajax-requests in Internet Explorer 8 and 9
 
 Internet Explorer 8 and 9 versions doesn't support cross-domain **CORS** ajax-requests with **XMLHttpRequest**,
 for these purposes IE 8/9 using **XDomainRequest**. `jquery-transport-xdr` makes transparent replasement **jQuery** transport, that's allow cross-domain ajax-requests in IE8 and IE9 without changing source code.
