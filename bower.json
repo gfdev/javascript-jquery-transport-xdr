@@ -22,7 +22,16 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "src",
+    ".npmignore",
+    ".babelrc",
+    ".editorconfig",
+    ".eslintrc",
+    ".gitattributes",
+    ".travis.yml",
+    "package.json",
+    "webpack.config.js"
   ],
   "moduleType": [
     "amd",

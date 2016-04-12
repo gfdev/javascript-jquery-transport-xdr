@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("jQuery"));
+	else if(typeof define === 'function' && define.amd)
+		define(["jQuery"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("jQuery")) : factory(root["jQuery"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -44,44 +54,57 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery.transport.xdr
-	 * https://github.com/gfdev/javascript-jquery-transport-xdr
-	 * Copyright (c) 2015 Gordon Freeman
-	 */
-	'use strict';
+	module.exports = __webpack_require__(1);
 
-	(function (factory) {
-	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	    } else if (typeof module === 'object' && module.exports) {
-	        module.exports = factory(require('jquery'));
-	    } else {
-	        factory(jQuery);
-	    }
-	})(function ($) {
-	    $.ajaxTransport('+*', function (opts, optsUser, xhr) {
-	        if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
-	            var text = __webpack_require__(2),
-	                xdr = new XDomainRequest(),
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /*!
+	                                                                                                                                                                                                                                                   * jQuery.transport.xdr
+	                                                                                                                                                                                                                                                   * https://github.com/gfdev/javascript-jquery-transport-xdr
+	                                                                                                                                                                                                                                                   * Copyright (c) 2015 Gordon Freeman
+	                                                                                                                                                                                                                                                   */
+
+	var _text = __webpack_require__(3);
+
+	var _text2 = _interopRequireDefault(_text);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$.ajaxTransport('+*', function (opts, optsUser, xhr) {
+	    if (opts.crossDomain && (document.addEventListener || document.querySelector) && !window.atob && window.XDomainRequest) {
+	        var _ret = function () {
+	            var xdr = new XDomainRequest(),
 	                method = opts.type.toUpperCase(),
 	                contentType = opts.contentType || optsUser.contentType,
 	                scheme = opts.url.substring(0, opts.url.indexOf(':')).toUpperCase(),
 	                uri = opts.url,
 	                data = optsUser.data || {},
-	                _error = function (code, param) {
+	                _error = function _error(code, param) {
 	                return {
-	                    send: function (hdr, cb) {
-	                        cb(-1, text.get(code, param));
+	                    send: function send(hdr, cb) {
+	                        cb(-1, _text2.default.get(code, param));
 	                    },
 	                    abort: $.noop
 	                };
 	            };
 
-	            if (!xdr) return _error(1);
-	            if (!optsUser.forceMethod && $.inArray(method, ['GET', 'POST']) === -1) return _error(2, method);
-	            if ($.inArray(scheme, ['HTTP', 'HTTPS']) === -1) return _error(3, scheme);
-	            if (scheme !== location.protocol.substring(0, location.protocol.indexOf(':')).toUpperCase()) return _error(4);
+	            if (!xdr) return {
+	                    v: _error(1)
+	                };
+	            if (!optsUser.forceMethod && $.inArray(method, ['GET', 'POST']) === -1) return {
+	                    v: _error(2, method)
+	                };
+	            if ($.inArray(scheme, ['HTTP', 'HTTPS']) === -1) return {
+	                    v: _error(3, scheme)
+	                };
+	            if (scheme !== location.protocol.substring(0, location.protocol.indexOf(':')).toUpperCase()) return {
+	                    v: _error(4)
+	                };
 
 	            if (optsUser.forceMethod) {
 	                if (method === 'HEAD') {
@@ -109,81 +132,86 @@
 	            xdr.onprogress = $.noop;
 
 	            return {
-	                send: function (hdr, cb) {
-	                    xdr.onload = function () {
-	                        var data = {},
-	                            error = null;
+	                v: {
+	                    send: function send(hdr, cb) {
+	                        xdr.onload = function () {
+	                            var data = {},
+	                                error = null;
 
-	                        switch (opts.dataType) {
-	                            case 'json':
-	                                try {
-	                                    data.json = $.parseJSON(xdr.responseText);
-	                                } catch (e) {
-	                                    error = e.message;
-	                                }
-	                                break;
-	                            case 'xml':
-	                                try {
-	                                    data.xml = $.parseXML(xdr.responseText);
-	                                } catch (e) {
-	                                    error = e.message;
-	                                }
-	                                break;
-	                            case 'text':
-	                                data.text = xdr.responseText;
-	                                break;
-	                            case 'html':
-	                                data.html = xdr.responseText;
-	                                break;
+	                            switch (opts.dataType) {
+	                                case 'json':
+	                                    try {
+	                                        data.json = $.parseJSON(xdr.responseText);
+	                                    } catch (e) {
+	                                        error = e.message;
+	                                    }
+	                                    break;
+	                                case 'xml':
+	                                    try {
+	                                        data.xml = $.parseXML(xdr.responseText);
+	                                    } catch (e) {
+	                                        error = e.message;
+	                                    }
+	                                    break;
+	                                case 'text':
+	                                    data.text = xdr.responseText;
+	                                    break;
+	                                case 'html':
+	                                    data.html = xdr.responseText;
+	                                    break;
+	                            }
+
+	                            if (error) return cb(500, _text2.default.get(6, error));
+
+	                            var headers = ['Content-Type: ' + xdr.contentType, 'Content-Length: ' + xdr.responseText.length];
+
+	                            cb(200, 'OK', data, headers.join('\r\n'));
+	                        };
+
+	                        xdr.onerror = function () {
+	                            cb(500, _text2.default.get(7));
+	                        };
+	                        xdr.ontimeout = function () {
+	                            cb(500, _text2.default.get(8));
+	                        };
+
+	                        if (optsUser.__test === true) {
+	                            xhr.__method = method;
+	                            xhr.__uri = uri;
 	                        }
 
-	                        if (error) return cb(500, text.get(6, error));
+	                        xdr.open(method, uri);
 
-	                        var headers = ['Content-Type: ' + xdr.contentType, 'Content-Length: ' + xdr.responseText.length];
-
-	                        cb(200, 'OK', data, headers.join('\r\n'));
-	                    };
-
-	                    xdr.onerror = function () {
-	                        cb(500, text.get(7));
-	                    };
-	                    xdr.ontimeout = function () {
-	                        cb(500, text.get(8));
-	                    };
-
-	                    if (optsUser.__test === true) {
-	                        xhr.__method = method;
-	                        xhr.__uri = uri;
+	                        setTimeout(function () {
+	                            xdr.send(method === 'POST' ? typeof data === 'string' ? data : $.isPlainObject(data) ? $.param(data) : null : null);
+	                        }, 0);
+	                    },
+	                    abort: function abort() {
+	                        xdr.abort();
 	                    }
-
-	                    xdr.open(method, uri);
-
-	                    setTimeout(function () {
-	                        xdr.send(method === 'POST' ? typeof data === 'string' ? data : $.isPlainObject(data) ? $.param(data) : null : null);
-	                    }, 0);
-	                },
-	                abort: function () {
-	                    xdr.abort();
 	                }
 	            };
-	        }
-	    });
+	        }();
+
+	        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	    }
 	});
-
-/***/ },
-/* 1 */
-/***/ function(module, exports) {
-
-	module.exports = jQuery;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
 	'use strict';
 
 	module.exports = {
-	    get: function (code, param) {
+	    get: function get(code, param) {
 	        var _messages = {
 	            0: 'Unknown Error',
 	            1: 'No Transport',
@@ -201,4 +229,6 @@
 	};
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;

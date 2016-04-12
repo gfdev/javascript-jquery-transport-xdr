@@ -1,0 +1,9 @@
+.npmignore
+.babelrc
+bower.json
+.editorconfig
+.eslintrc
+.gitattributes
+test/
+.travis.yml
+webpack.config.js

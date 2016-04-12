@@ -1,28 +1,45 @@
-var path = require('path')
-    , pkg = require('./package.json')
+require('babel-polyfill');
+
+var pkg = require('./package.json')
     , webpack = require('webpack')
-    , minimize = process.argv.indexOf('--no-minimize') === -1 ? true : false
-    , plugins = []
+    , cloneDeep = require('lodash.clonedeep')
+    , src = __dirname + '/src'
 ;
 
-minimize && plugins.push(new webpack.optimize.UglifyJsPlugin());
-
-module.exports = {
-    context: __dirname,
-    entry: {
-        'jquery.transport.xdr': './src/jquery.transport.xdr.js'
-    },
+var defaults = {
+    context: src,
+    entry: '../index',
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name]' + (minimize ? '.min.' : '.') + 'js'
+        path: __dirname + '/dist',
+        filename: pkg.name + '.js',
+        libraryTarget: 'umd'
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
     },
     module: {
+        preLoaders: [
+            { test: /\.jsx$/, include: src, loader: 'eslint' }
+        ],
         loaders: [
-            { test: /\.js?$/, exclude: /node_modules/, loader: 'babel-loader?blacklist=spec.functionName' },
+            { test: /\.jsx$/, include: src, loader: 'babel?cacheDirectory' }
         ]
     },
-    plugins: plugins,
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        })
+    ],
     externals: {
-        "jquery": "jQuery"
+        'jquery': 'jQuery'
     }
 };
+
+var minimized = cloneDeep(defaults);
+
+minimized.plugins.push(new webpack.optimize.UglifyJsPlugin());
+minimized.output.filename = pkg.name + '.min.js';
+
+module.exports = [ defaults, minimized ];
