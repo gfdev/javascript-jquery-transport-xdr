@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /*!
-	                                                                                                                                                                                                                                                   * jQuery.transport.xdr
+	                                                                                                                                                                                                                                                   * jquery.transport.xdr
 	                                                                                                                                                                                                                                                   * https://github.com/gfdev/javascript-jquery-transport-xdr
 	                                                                                                                                                                                                                                                   * Copyright (c) 2015 Gordon Freeman
 	                                                                                                                                                                                                                                                   */

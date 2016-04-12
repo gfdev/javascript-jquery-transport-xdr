@@ -11,7 +11,7 @@ var defaults = {
     entry: '../index',
     output: {
         path: __dirname + '/dist',
-        filename: pkg.name + '.js',
+        filename: 'jquery.transport.xdr.js',
         libraryTarget: 'umd'
     },
     resolve: {
@@ -40,6 +40,6 @@ var defaults = {
 var minimized = cloneDeep(defaults);
 
 minimized.plugins.push(new webpack.optimize.UglifyJsPlugin());
-minimized.output.filename = pkg.name + '.min.js';
+minimized.output.filename = 'jquery.transport.xdr.min.js';
 
 module.exports = [ defaults, minimized ];
