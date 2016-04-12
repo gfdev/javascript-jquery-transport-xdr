@@ -30,6 +30,7 @@
     ".eslintrc",
     ".gitattributes",
     ".travis.yml",
+    "index.js",
     "package.json",
     "webpack.config.js"
   ],
